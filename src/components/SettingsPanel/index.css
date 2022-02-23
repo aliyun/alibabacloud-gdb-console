@@ -1,0 +1,42 @@
+.color-picker-button {
+  width: 36px;
+  height: 32px;
+  border-radius: 3px;
+}
+
+.color-picker-swatch {
+  padding: 5px 1px 0px 1px;
+  background: #fff;
+  /* border-radius: 1px; */
+  /* box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1); */
+  display: inline-block;
+  cursor: pointer;
+}
+
+.color-picker-popover {
+  position: absolute;
+  z-index: 2;
+}
+
+.color-picker-cover {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+.line-settings-container {
+  padding: 0.5em;
+  display: flex;
+}
+
+.line-settings-label {
+  padding: 0 10px 0 0;
+}
+
+div.setting-notice {
+  margin: 5px 0 0 0;
+  padding: 5px 10px 5px 10px;
+  background: rgba(218, 150, 150, 0.2);
+}

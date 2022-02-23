@@ -1,0 +1,403 @@
+.CodeMirror {
+  height: auto;
+  padding-left: 4px;
+}
+
+.CodeMirror-empty.CodeMirror-focused {
+  outline: none;
+}
+
+.CodeMirror pre.CodeMirror-placeholder {
+  color: #999;
+}
+
+.dslInput {
+  display: flex;
+  width: 100%;
+}
+
+.gremlinInput {
+  flex: 1;
+  height: auto;
+  padding-top: 1px;
+}
+
+.inputLine {
+  display: inline;
+  z-index: 9;
+}
+
+div.query-input {
+  margin-right: 300px;
+  height: 56px;
+  padding: 0 5px 0 5px;
+}
+
+div.query-input .next-card-body {
+  padding: 8px 6px 8px 6px;
+}
+
+div.param-panel {
+  z-index: 9;
+  position: inherit;
+  padding: 10px 10px 0px 10px;
+  background-color: white;
+  border-width: 1px;
+  border-radius: 2px;
+  border-style: solid;
+  border-color: lightgray;
+  margin-top: 5px;
+}
+
+div.param-input {
+  display: flex;
+}
+
+div.left-area {
+  width: 180px;
+  float: left;
+}
+
+div.left-area .next-card-head {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+div.left-area .next-card-body {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+div.main-area .next-card-actions {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+div.left-area .next-tree-node-inner {
+  padding-left: 0 !important;
+}
+
+div.main-area {
+  padding: 0px 5px 0px 5px;
+  margin-right: 300px;
+}
+
+div.main-area .next-card-head {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+div.main-area .next-card-body {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+div.card-footer {
+  position: absolute;
+  bottom: 0;
+  background-color: white;
+}
+
+button.connect-btn {
+  width: 100px;
+}
+
+button.footer-btn {
+  border: none;
+  transition-duration: 0.1s;
+  background: transparent;
+  margin: auto;
+  box-shadow: 1px 0 1px 0 lightgray;
+  border-radius: 2px;
+}
+
+button.footer-btn:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+button.footer-btn:disabled {
+  color: white;
+  background-color: gray;
+}
+
+div.right-area {
+  width: 300px;
+  float: right;
+}
+
+div.right-area .next-card-head {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+div.right-area .next-card-body {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+div.next-dialog-header {
+  padding-bottom: 0;
+}
+
+div.toolbar {
+  position: absolute;
+  right: 0;
+  z-index: 8;
+}
+
+div.toolbar-btn {
+  display: inline !important;
+  margin-right: 2px !important;
+}
+
+div.toolbar-btn .next-btn {
+  border-radius: 3px;
+}
+
+div.toolbar-btn .next-input {
+  border-radius: 3px;
+}
+
+div.toolbar-btn .next-input-group {
+  border-radius: 3px;
+  height: 24px !important;
+}
+
+div.toolbar-btn .next-select.next-size-medium {
+  height: 22px !important;
+}
+
+div.toolbar-btn .next-input.next-medium input {
+  height: 22px !important;
+}
+
+div.toolbar-btn .next-btn.next-medium {
+  height: 24px !important;
+  margin: 0 !important;
+}
+
+.toolbar-separator {
+  width: 1em;
+}
+
+.search-form-item {
+  display: inline !important;
+  margin-right: 4px !important;
+}
+
+.next-table td .next-table-cell-wrapper,
+.next-table th .next-table-cell-wrapper {
+  word-break: break-all !important;
+}
+
+.resultPre {
+  border: 1px solid #ccc;
+  padding: 8px;
+  color: grey;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+div.clear-btn {
+  position: absolute;
+  right: 0;
+  z-index: 1;
+}
+
+div.legend {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 200px;
+}
+
+div.legend-row {
+  height: 25px;
+  display: flex;
+  border-radius: 3px;
+}
+
+div.legend-row:hover {
+  background: rgb(215, 215, 215);
+}
+
+div.legend-row-label {
+  width: 100px;
+  height: 20px;
+  text-align: right;
+  margin: 0 5px 0 5px;
+  padding-top: 3px;
+  text-shadow: 1px 1px 1px lightgray;
+}
+
+div.legend-row-count {
+  width: 50px;
+  height: 20px;
+  /* text-align: right; */
+  margin: 0 5px 0 5px;
+  padding-top: 3px;
+  text-shadow: 1px 1px 1px lightgray;
+}
+
+div.legend-row-legend {
+  width: 50px;
+  height: 20px;
+  margin: 2px 0 2px 0;
+  padding-left: 15px;
+  border-radius: 5px;
+}
+
+div.legend-row-legend :hover {
+  cursor: pointer;
+}
+
+div.legend-row-legend-edge {
+  width: 50px;
+  height: 20px;
+  margin: 2px 0 2px 0;
+  padding-left: 10px;
+  padding-right: 5px;
+  border-radius: 5px;
+}
+
+div.legend-row-legend-edge :hover {
+  cursor: pointer;
+}
+
+div.legend-edge {
+  height: 10px;
+  margin: 5px 0px 5px 0px;
+  border-radius: 5px;
+}
+
+div.legend-visible {
+  visibility: hidden;
+  /* TODO: */
+  margin: 3px 0 0 5px;
+}
+
+div.legend-circle {
+  width: 18px;
+  height: 18px;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+}
+
+div.legend-box {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+}
+
+div.legend-triangle {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 16px solid;
+}
+
+div.legend-diamond {
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-bottom-color: red;
+  position: relative;
+  top: -10px;
+}
+
+div.legend-diamond-after {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 10px;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-color: red;
+}
+
+div.legend-star {
+  margin: 5px 0;
+  position: relative;
+  display: block;
+  color: blue;
+  width: 0px;
+  height: 0px;
+  border-right: 10px solid transparent;
+  border-bottom: 7px solid;
+  border-left: 10px solid transparent;
+  -moz-transform: rotate(35deg);
+  -webkit-transform: rotate(35deg);
+  -ms-transform: rotate(35deg);
+  -o-transform: rotate(35deg);
+}
+
+div.legend-star-before {
+  border-bottom: 8px solid;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  position: absolute;
+  height: 0;
+  width: 0;
+  top: -4px;
+  left: -6px;
+  display: block;
+  content: "";
+  -webkit-transform: rotate(-35deg);
+  -moz-transform: rotate(-35deg);
+  -ms-transform: rotate(-35deg);
+  -o-transform: rotate(-35deg);
+}
+
+div.legend-star-after {
+  position: absolute;
+  display: block;
+  color: blue;
+  top: 0px;
+  left: -10px;
+  width: 0px;
+  height: 0px;
+  border-right: 10px solid transparent;
+  border-bottom: 7px solid;
+  border-left: 10px solid transparent;
+  -webkit-transform: rotate(-70deg);
+  -moz-transform: rotate(-70deg);
+  -ms-transform: rotate(-70deg);
+  -o-transform: rotate(-70deg);
+  content: "";
+}
+
+div.legend-img {
+  width: 30px;
+  height: 20px;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 2px solid gray;
+  font-size: xx-small;
+  text-align: center;
+}
+
+div.property-header {
+  padding: 0 3px 0 3px;
+  margin: 0 0 5px 0px;
+  display: flex;
+}
+
+div.property-header div.col-key {
+  padding-right: 5px;
+  width: 50px;
+}
+
+div.property-header div.col-value {
+  width: 230px;
+}
+
+div.property-header div.col-value div {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

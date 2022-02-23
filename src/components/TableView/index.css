@@ -1,0 +1,17 @@
+.table-pagination {
+  margin: auto;
+  position: absolute;
+  right: 0px;
+  padding-top: 0.5em;
+}
+
+div.table-cell {
+  max-width: 100px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+div.table-view .next-pagination {
+  bottom: 0px;
+}

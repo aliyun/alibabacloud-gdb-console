@@ -1,0 +1,58 @@
+{
+  "name": "gdb-console",
+  "version": "0.2.0",
+  "description": "A GUI Console for GDB",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron . --debug",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.aliyun.gdb.console",
+    "mac": {
+      "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+      "target": [
+        "zip"
+      ]
+    },
+    "win": {
+      "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+      "target": [
+        "zip"
+      ]
+    },
+    "linux": {
+      "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+      "target": [
+        "AppImage"
+      ]
+    },
+    "electronDownload": {
+      "mirror": "https://npmmirror.com/mirrors/electron/"
+    },
+    "asar": true,
+    "files": [
+      "*.js",
+      {
+        "from": "../build",
+        "to": "build"
+      },
+      {
+        "from": "../backend/drivers",
+        "to": "drivers"
+      }
+    ]
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [],
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^11.1.0",
+    "electron-builder": "^22.14.5"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "gremlin": "^3.4.10",
+    "neo4j-driver": "=4.2.3"
+  }
+}

@@ -1,0 +1,7 @@
+form {
+  display: flex;
+}
+
+.next-form-item {
+  margin: 5px 5px 5px 0px;
+}

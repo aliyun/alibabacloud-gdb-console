@@ -1,0 +1,54 @@
+{
+  "name": "gdb-console",
+  "version": "0.2.0",
+  "private": true,
+  "homepage": ".",
+  "dependencies": {
+    "@alicloud/console-components": "^1.4.57",
+    "@alicloud/console-components-intl": "^1.0.18",
+    "@alicloud/console-components-slide-panel": "^2.2.8",
+    "@antv/g6": "^4.3.6",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.1",
+    "codemirror": "^5.58.3",
+    "is-electron": "^2.2.0",
+    "moment": "^2.29.1",
+    "react": "^17.0.1",
+    "react-color": "^2.19.3",
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.2.1",
+    "web-vitals": "^0.2.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "server": "cd backend && npm start"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "http://localhost:3030",
+  "devDependencies": {
+    "react-error-overlay": "6.0.9",
+    "react-scripts": "^4.0.1"
+  }
+}

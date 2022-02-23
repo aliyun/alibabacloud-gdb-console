@@ -1,0 +1,23 @@
+.CodeMirror {
+  border: 1px solid #ccc;
+  font-size: 13px;
+  font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+}
+
+li.CodeMirror-hint-active {
+  background: #33373c;
+  color: white;
+}
+
+.keyword-icon-CodeMirror-hint {
+  background-color: #62b2ff;
+  color: white;
+  border-radius: 6px;
+  font-size: 14px;
+  padding: 0 3px;
+}
+
+.keyword-CodeMirror-hint {
+  padding-left: 5px;
+  font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+}

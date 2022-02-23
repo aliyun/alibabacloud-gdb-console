@@ -1,0 +1,25 @@
+div:focus {
+  outline: 0;
+}
+
+.contextmenu-customwidth {
+  font-size: 13px;
+}
+
+.context-menu-item {
+  position: relative;
+  box-sizing: content-box;
+  padding: 0.2em 1em;
+  color: "#2f2f2f";
+  font-size: small;
+}
+
+.g6-component-contextmenu {
+  border: 1px solid #bebebe;
+  border-radius: 0.2em;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 50%);
+}
+
+.context-menu-content li:hover {
+  background-color: grey;
+}

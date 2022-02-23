@@ -1,0 +1,42 @@
+div.log-line {
+  margin: 3px 10px 2px 0;
+}
+
+div.log-event-tag {
+  width: 30px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 3px #888888;
+  text-align: center;
+  font-size: 10px;
+}
+
+div.log-field {
+  text-shadow: 1px 1px 1px lightgray;
+}
+
+div.log-event-type {
+  float: left;
+  text-shadow: 1px 1px 1px gray;
+}
+
+div.log-event-time {
+  float: left;
+  width: 160px;
+  text-align: center;
+}
+
+div.log-content {
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+div.log-op {
+  width: 24;
+  float: right;
+}
+
+div.log-detail {
+  padding: 4px 4px 4px 4px;
+}
