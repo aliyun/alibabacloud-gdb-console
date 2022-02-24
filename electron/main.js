@@ -41,6 +41,7 @@ function createWindow() {
     },
   });
 
+  mainWindow.removeMenu();
   const startUrl = url.format({
     pathname: path.join(__dirname, "build/index.html"),
     protocol: "file:",
