@@ -654,14 +654,22 @@ class GraphZone extends React.Component {
     }
   }
 
-  initNodeStyle(nodes) {
+  initStyles(graph) {
     let changed = false;
-    for (const node of nodes) {
+    for (const node of graph.nodes) {
       if (!(node.label in this.settings.node)) {
         this.settings.node[node.label] = Defaults.defaultNodeCfg();
         changed = true;
       }
     }
+
+    for (const edge of graph.edges) {
+      if (!(edge.label in this.settings.edge)) {
+        this.settings.edge[edge.label] = Defaults.defaultEdgeCfg();
+        changed = true;
+      }
+    }
+
     if (changed) {
       settingsStorage.save(this.settings);
     }
@@ -694,7 +702,7 @@ class GraphZone extends React.Component {
         if (msg.graph.nodes.length > 0) {
           const graphData = msg.graph;
           // 如果没有可视化设置，则为顶点非配随机颜色
-          this.initNodeStyle(graphData.nodes);
+          this.initStyles(graphData);
           this.drawGraph(graphData);
           this.labelCount = this.createLabelCount(graphData);
           this.updateGraphData(graphData);
@@ -1692,7 +1700,6 @@ class GraphZone extends React.Component {
           ref={(graphVis) => {
             this.graphVis_ = graphVis;
           }}
-          style={{ height: `${graphVisHeight.toString()}px` }}
           getNodePropertyCallback={(selectId, callback) => this.getNodePropertiesBatch(selectId, callback)}
           getEdgePropertyCallback={(selectId, callback) => this.getEdgePropertiesBatch(selectId, callback)}
           showPropertyCallback={(elementType, elementId, elementLabel, graphData) => {

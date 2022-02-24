@@ -182,6 +182,65 @@ class GraphVis extends React.Component {
     return { ...options, ...edge.settings };
   }
 
+  getControlPoints(x1, y1, x2, y2, d) {
+    const midx = (x1 + x2) / 2;
+    const midy = (y1 + y2) / 2;
+
+    const Dx = x2 - x1;
+    const Dy = y2 - y1;
+    const D = Math.sqrt(Math.pow(Dx, 2) + Math.pow(Dy, 2));
+    const dy = (Dx * d) / D;
+    const dx = (Dy * d) / D;
+
+    return [{ x: midx + dx, y: midy - dy }];
+  }
+
+  getOverlappedEdges() {
+    // map src#target to edge
+    let edges = {};
+    this.graph_.getEdges().forEach((e) => {
+      const edge = e.getModel();
+      const key = `${edge.source}#${edge.target}`;
+      if (key in edges) {
+        edges[key].push(e);
+      } else {
+        edges[key] = [e];
+      }
+    });
+
+    return edges;
+  }
+
+  resetOverlappedEdges() {
+    const edges = this.getOverlappedEdges();
+
+    for (const [key, edge_list] of Object.entries(edges)) {
+      if (edge_list.length <= 1) {
+        continue;
+      }
+      let offset = 7.5;
+      let increaseOffset = false;
+      for (const e of edge_list) {
+        const edge = e.getModel();
+        this.graph_.updateItem(e, {
+          type: "quadratic",
+          controlPoints: this.getControlPoints(
+            edge.startPoint.x,
+            edge.startPoint.y,
+            edge.endPoint.x,
+            edge.endPoint.y,
+            offset
+          ),
+        });
+        offset = -offset;
+        if (increaseOffset) {
+          offset = offset > 0 ? offset + 15 : offset - 15;
+        }
+        increaseOffset = !increaseOffset;
+      }
+    }
+  }
+
   mergeNodesAndEdges(graphData) {
     const newNodes = [];
     const newEdges = [];
@@ -687,9 +746,11 @@ class GraphVis extends React.Component {
 
   setEvents(graph) {
     graph.on("afterlayout", () => {
-      if (graph.get("layout").type !== "force") {
-        graph.fitCenter();
-      }
+      graph.fitCenter();
+      this.resetOverlappedEdges();
+    });
+    graph.on("dragnodeend", (nodes) => {
+      this.resetOverlappedEdges();
     });
     // 鼠标进入节点
     graph.on("node:mouseenter", (e) => {
@@ -951,7 +1012,7 @@ class GraphVis extends React.Component {
 
     // arrow
     if (options.lineArrow === undefined || options.lineArrow) {
-      new_edge.style.endArrow = Defaults.edgeArrow;
+      new_edge.style.endArrow = { fill: options.lineColor, path: Defaults.endArrowPath };
     } else {
       new_edge.style.endArrow = false;
     }

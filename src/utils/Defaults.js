@@ -25,8 +25,6 @@
 import { Arrow } from "@antv/g6";
 
 class Defaults {
-  static colorIndex = 0;
-
   static nodeLabelCfg = {
     style: {
       fill: "#000000E6",
@@ -36,7 +34,7 @@ class Defaults {
   };
 
   static edgeLabelCfg = {
-    refY: 8,
+    refY: 5,
     autoRotate: true,
     style: {
       fill: "#000000A6",
@@ -176,15 +174,11 @@ class Defaults {
     },
   };
 
-  static edgeArrow = {
-    path: Arrow.triangle(4, 5),
-    fill: "slategray",
-  };
+  static endArrowPath = Arrow.triangle(4, 5);
 
   static commonEdgeStyle = {
     lineWidth: 1,
     startArrow: false,
-    endArrow: this.edgeArrow,
     stroke: this.presetEdgeColors[0],
   };
 
@@ -249,17 +243,35 @@ class Defaults {
     return this.layoutOptions[this.layout];
   }
 
+  static nodeColorIndex = 0;
+  static edgeColorIndex = 0;
+
   static defaultNodeCfg() {
     const cfg = {
       text: "id",
       nodeShape: "circle",
-      nodeColor: this.presetNodeColors[this.colorIndex],
+      nodeColor: this.presetNodeColors[this.nodeColorIndex],
       nodeSize: "autoResizeDisabled",
     };
-    ++this.colorIndex;
-    if (this.colorIndex >= this.presetNodeColors.length) {
-      this.colorIndex = 0;
+    ++this.nodeColorIndex;
+    if (this.nodeColorIndex >= this.presetNodeColors.length) {
+      this.nodeColorIndex = 0;
     }
+    return cfg;
+  }
+
+  static defaultEdgeCfg() {
+    const cfg = {
+      lineType: "line",
+      lineColor: this.presetEdgeColors[this.edgeColorIndex],
+      lineDash: false,
+      lineArrow: true,
+    };
+    ++this.edgeColorIndex;
+    if (this.edgeColorIndex >= this.presetEdgeColors.length) {
+      this.edgeColorIndex = 0;
+    }
+
     return cfg;
   }
 }
