@@ -391,7 +391,7 @@ class GraphZone extends React.Component {
       dsl,
       (msg) => {
         // 如果没有可视化设置，则为顶点非配随机颜色
-        this.initNodeStyle(msg.graph.nodes);
+        this.initStyles(msg.graph);
         if (callback) {
           const result = callback(msg.graph);
           this.appendLog(
@@ -1288,7 +1288,7 @@ class GraphZone extends React.Component {
     this.hideLoading();
     this.schema = schema;
     this.buildingSchema = false;
-    this.initNodeStyle(schema.nodes);
+    this.initStyles(schema);
     this.drawGraph(schema);
     this.labelCount = labelCount;
     this.updateGraphData(schema);
