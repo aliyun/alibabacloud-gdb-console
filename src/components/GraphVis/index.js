@@ -442,13 +442,13 @@ class GraphVis extends React.Component {
     if (this.props.getEdgePropertyCallback) {
       const edge = item.getModel();
       const realId = edge.id.substring(2);
-      if (typeof edge.properties === "object") {
+      if (typeof edge.properties === "object" && Object.keys(edge.properties).length > 0) {
         this.props.showPropertyCallback("edge", realId, edge.realLabel, edge.properties);
         return;
       }
       this.props.getEdgePropertyCallback([realId], (_, properties) => {
         if (this.props.showPropertyCallback) {
-          this.props.showPropertyCallback("edge", realId, edge.realLabel, this.propertiesToObject(properties[0]));
+          this.props.showPropertyCallback("edge", realId, edge.realLabel, properties[0]);
         }
       });
     }
@@ -530,7 +530,7 @@ class GraphVis extends React.Component {
     if (edgeIds.length > 0 && this.props.getEdgePropertyCallback) {
       this.props.getEdgePropertyCallback(edgeIds, (edgeIds, properties) => {
         for (const i in edgeIds) {
-          this.mergeEdge(edgeIds[i], { properties: this.propertiesToObject(properties[i]) });
+          this.mergeEdge(edgeIds[i], { properties: properties[i] });
         }
       });
     }
@@ -981,7 +981,7 @@ class GraphVis extends React.Component {
       } else if (options.text === "id") {
         new_edge.label = edge.realId;
       } else if (options.text === "property") {
-        if (typeof edge.properties === "object") {
+        if (typeof edge.properties === "object" && Object.keys(edge.properties).length > 0) {
           if (options.textValue in edge.properties) {
             new_edge.label = edge.properties[options.textValue];
           } else {

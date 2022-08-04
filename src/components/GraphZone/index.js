@@ -242,7 +242,7 @@ class GraphZone extends React.Component {
     this.algorithmTree = [
       {
         label: "选择",
-        key: "pick",
+        key: "cat-pick",
         children: [
           { label: "随机选点", key: "0-1" },
           { label: "随机选边", key: "0-2" },
@@ -250,7 +250,7 @@ class GraphZone extends React.Component {
       },
       {
         label: "路径",
-        key: "path",
+        key: "cat-path",
         children: [
           {
             label: "K阶邻居",
@@ -1687,7 +1687,7 @@ class GraphZone extends React.Component {
             }
             align="br"
           >
-            清空搜索结果
+            帮助文档
           </Balloon.Tooltip>
         </div>
       </div>
@@ -1982,7 +1982,7 @@ class GraphZone extends React.Component {
           isNodeBlock={{ defaultPaddingLeft: 0 }}
           selectedKeys={[this.state.selectedAlgo]}
           onSelect={(keys, extra) => {
-            if (keys.length > 0) {
+            if (keys.length > 0 && typeof keys[0] === "string" && !keys[0].startsWith("cat-")) {
               this.setState({ selectedAlgo: keys[0] });
             } else {
               this.setState({ selectedAlgo: null });
