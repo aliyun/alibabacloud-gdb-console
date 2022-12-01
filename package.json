@@ -4,9 +4,9 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "@alicloud/console-components": "^1.4.57",
+    "@alicloud/console-components": "^1.5.10",
     "@alicloud/console-components-intl": "^1.0.18",
-    "@alicloud/console-components-slide-panel": "^2.2.8",
+    "@alicloud/console-components-slide-panel": "^2.2.14",
     "@antv/g6": "^4.3.6",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -18,7 +18,7 @@
     "react": "^17.0.1",
     "react-color": "^2.19.3",
     "react-dom": "^17.0.1",
-    "styled-components": "^5.2.1",
+    "styled-components": "^5.3.6",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
