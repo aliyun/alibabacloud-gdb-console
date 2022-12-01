@@ -576,7 +576,7 @@ class GraphZone extends React.Component {
       if ("label" in node) {
         nodeLabels.add(node.label);
       }
-      if ("properties" in node) {
+      if (node["properties"] !== undefined) {
         for (const key in node.properties) {
           if (key.constructor === String && key.length > 0) {
             nodePropertyKey.add(key);
@@ -592,7 +592,7 @@ class GraphZone extends React.Component {
       if ("label" in edge) {
         edgeLabels.add(edge.label);
       }
-      if ("properties" in edge) {
+      if (edge["properties"] !== undefined) {
         for (const key in edge.properties) {
           if (key.constructor === String && key.length > 0) {
             edgePropertyKey.add(key);

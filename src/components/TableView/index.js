@@ -170,7 +170,9 @@ class TableView extends React.Component {
               }
               cell={(value, index, record) => {
                 const content =
-                  "properties" in record && k in record.properties ? this.getColumnText(record.properties[k]) : "";
+                  record["properties"] !== undefined && k in record.properties
+                    ? this.getColumnText(record.properties[k])
+                    : "";
                 return (
                   <div
                     title={content}

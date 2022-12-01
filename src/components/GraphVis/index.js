@@ -562,7 +562,7 @@ class GraphVis extends React.Component {
             founds.push(model.id);
           }
         }
-        if ("properties" in model) {
+        if (model["properties"] !== undefined) {
           for (const key in model.properties) {
             if (key === keyword || model.properties[key] === keyword) {
               founds.push(model.id);
@@ -699,7 +699,7 @@ class GraphVis extends React.Component {
         if ("label" in node) {
           label = "realLabel" in node ? node.realLabel : node.label;
         }
-        if ("properties" in node) {
+        if (node["properties"] !== undefined) {
           nodes.push({
             id: node.id.substring(2),
             label,
@@ -722,7 +722,7 @@ class GraphVis extends React.Component {
         if ("label" in edge) {
           label = "realLabel" in edge ? edge.realLabel : edge.label;
         }
-        if ("properties" in edge) {
+        if (edge["properties"] !== undefined) {
           edges.push({
             id: edge.id.substring(2),
             source: edge.source.substring(2),
