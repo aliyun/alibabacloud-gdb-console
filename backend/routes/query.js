@@ -34,12 +34,15 @@ router.post("/", function (req, res, next) {
     res.status(401).end();
     return;
   }
-
   var client = null;
   if (req.body.type == "cypher") {
     client = new CypherClient(`bolt://${connInfo.host}:${connInfo.port}`, connInfo.username, connInfo.password);
   } else {
-    client = new GremlinClient(`ws://${connInfo.host}:${connInfo.port}/gremlin`, connInfo.username, connInfo.password);
+    var url = `ws://${connInfo.host}:${connInfo.port}/gremlin`;
+    if (connInfo.dbname !== null && connInfo.dbname !== undefined && connInfo.dbname !== '' ) {
+      url =  url + "/" + connInfo.dbname;
+    }
+    client = new GremlinClient(url, connInfo.username, connInfo.password);
   }
   client
     .run(req.body.dsl)

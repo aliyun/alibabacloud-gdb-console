@@ -30,7 +30,7 @@ export default class HistoryStorage {
     if (history) {
       return JSON.parse(history);
     }
-    return { host: "", port: null, username: "" };
+    return { host: "", port: null, username: "", dbname: ""};
   }
 
   saveHistory(history) {

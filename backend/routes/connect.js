@@ -24,7 +24,6 @@
 
 const express = require("express");
 const axios = require("axios");
-
 var router = express.Router();
 
 router.post("/", function (req, res, next) {
@@ -39,9 +38,13 @@ router.post("/", function (req, res, next) {
     res.status(401).end();
     return;
   }
+  var url = `ws://${connInfo.host}:${connInfo.port}/gremlin`;
+  if (connInfo.dbname !== null && connInfo.dbname !== undefined && connInfo.dbname !== '' ) {
+    url =  url + "/" + connInfo.dbname;
+  }
   axios
     .post(
-      `http://${connInfo.host}:${connInfo.port}/gremlin`,
+      url,
       { gremlin: "g.V().count()" },
       {
         auth: {
