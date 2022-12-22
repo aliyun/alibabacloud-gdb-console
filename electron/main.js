@@ -127,8 +127,12 @@ ipcMain.handle("query", async (_, dsl) => {
 
   var client = null;
   if (dsl.startsWith("g.")) {
+    var url = `ws://${global.connInfo.host}:${global.connInfo.port}/gremlin`;
+    if (global.connInfo.dbname !== null && global.connInfo.dbname !== undefined && global.connInfo.dbname !== '' ) {
+      url =  url + "/" + global.connInfo.dbname;
+    }
     client = new GremlinClient(
-      `ws://${global.connInfo.host}:${global.connInfo.port}/gremlin`,
+      url,
       global.connInfo.username,
       global.connInfo.password
     );
@@ -153,9 +157,13 @@ ipcMain.handle("query", async (_, dsl) => {
 });
 
 ipcMain.handle("set-connection", async (_, connInfo) => {
+  var url = `ws://${connInfo.host}:${connInfo.port}/gremlin`;
+  if (connInfo.dbname !== null && connInfo.dbname !== undefined && connInfo.dbname !== '' ) {
+    url =  url + "/" + connInfo.dbname;
+  }
   let result = await axios
     .post(
-      `http://${connInfo.host}:${connInfo.port}/gremlin`,
+      url,
       { gremlin: "g.V().count()" },
       {
         auth: {

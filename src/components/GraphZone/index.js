@@ -102,6 +102,7 @@ class GraphZone extends React.Component {
       connectPort: connInfo.port,
       connectUser: connInfo.username,
       connectPassword: "",
+      connectSubGraph: connInfo.dbname,
       mode: "cypher",
 
       viewType: "graph",
@@ -676,6 +677,7 @@ class GraphZone extends React.Component {
   }
 
   handleSubmitDSL(inputDSL) {
+    
     if (inputDSL.length === 0) {
       Message.error({
         title: "DSL 语句为空",
@@ -1131,11 +1133,12 @@ class GraphZone extends React.Component {
       port: this.state.connectPort,
       username: this.state.connectUser,
       password: this.state.connectPassword,
+      dbname: this.state.connectSubGraph,
     };
-
     request.connect(
       connInfo,
       () => {
+        this.appendLog("rsp", `dbname= ${connInfo.dbname}`);
         this.appendLog("rsp", `连接实例[${connInfo.username}@${connInfo.host}:${connInfo.port}]成功`);
         this.hideLoading();
         Message.success("连接成功");
@@ -1145,6 +1148,7 @@ class GraphZone extends React.Component {
           host: this.state.connectHost,
           port: this.state.connectPort,
           username: this.state.connectUser,
+          dbname: this.state.connectSubGraph,
         });
       },
       (result) => {
@@ -1375,6 +1379,17 @@ class GraphZone extends React.Component {
               htmlType="password"
               onChange={(value, _) => {
                 this.setState({ connectPassword: value });
+              }}
+            />
+          </p>
+          <p>
+            <Input
+              style={{ width: 400 }}
+              label={<span> 子图 </span>}
+              value={this.state.connectSubGraph}
+              placeholder='当您不使用子图功能时，该参数无需填写'
+              onChange={(value, _) => {
+                this.setState({ connectSubGraph: value });
               }}
             />
           </p>
