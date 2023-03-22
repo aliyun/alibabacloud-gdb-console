@@ -59,7 +59,7 @@ class QueryInput extends React.Component {
   componentDidMount() {
     if (this.editor_ == null) {
       const editor = CodeMirror.fromTextArea(this.textAreaRef_, {
-        lineNumbers: false,
+        lineNumbers: true,
         lineWrapping: true,
         matchBrackets: true,
         autoCloseBrackets: true,
@@ -73,7 +73,9 @@ class QueryInput extends React.Component {
             }
           },
         },
+        scrollbarStyle: null,
       });
+      editor.setSize(null, "30px");
       editor.on("keyup", (cm, event) => {
         if (!cm.state.completionActive) {
           const key = String.fromCharCode(event.keyCode);
@@ -86,7 +88,7 @@ class QueryInput extends React.Component {
       editor.on("change", (cm, event) => {
         const value = cm.getValue();
         if (this.state.isCypher == null && value.length >= 2) {
-          if (value.startsWith("g.")) {
+          if (value.startsWith("g.") || value.startsWith("graph.compute")) {
             this.setState({ isCypher: false });
           } else {
             this.setState({ isCypher: true });
@@ -98,6 +100,14 @@ class QueryInput extends React.Component {
         }
       });
 
+      editor.on("blur", (cm, event) => {
+        cm.setSize(null, "30px");
+      });
+
+      editor.on("focus", (cm, event) => {
+        cm.setSize(null, "150px");
+      });
+
       editor.setValue(this.props.defaultValue);
       this.editor_ = editor;
     }
@@ -105,6 +115,11 @@ class QueryInput extends React.Component {
 
   setValue(value) {
     this.editor_.setValue(value);
+    if (value.startsWith("g.") || value.startsWith("graph.compute")) {
+      this.setState({isCypher: false});
+    } else {
+      this.setState({isCypher: true});
+    }
   }
 
   getValue() {

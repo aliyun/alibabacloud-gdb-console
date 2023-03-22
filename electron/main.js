@@ -126,7 +126,7 @@ ipcMain.handle("query", async (_, dsl) => {
   }
 
   var client = null;
-  if (dsl.startsWith("g.")) {
+  if (dsl.startsWith("g.") || dsl.startsWith("graph.compute")) {
     client = new GremlinClient(
       `ws://${global.connInfo.host}:${global.connInfo.port}/gremlin`,
       global.connInfo.username,

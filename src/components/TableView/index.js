@@ -109,14 +109,36 @@ class TableView extends React.Component {
   }
 
   render() {
-    this.collectColumns();
+    this.columns = null;
+    const dataSource = this.props.ap
+      ? () => {
+          const result = [];
+          this.props.rows
+            .slice((this.state.currentPage - 1) * this.state.pageSize, this.state.currentPage * this.state.pageSize)
+            .forEach((element) => {
+              if ("key" in element && "value" in element) {
+                result.push(element);
+              } else {
+                result.push({ key: Object.keys(element)[0], value: JSON.stringify(Object.values(element)[0]) });
+              }
+            });
+          return result;
+        }
+      : () => {
+          return this.props.rows.slice(
+            (this.state.currentPage - 1) * this.state.pageSize,
+            this.state.currentPage * this.state.pageSize
+          );
+        };
+    if (this.props.ap) {
+      this.columns = { key: true, value: true };
+    } else {
+      this.collectColumns();
+    }
     return (
       <div className="table-view">
         <Table
-          dataSource={this.props.rows.slice(
-            (this.state.currentPage - 1) * this.state.pageSize,
-            this.state.currentPage * this.state.pageSize
-          )}
+          dataSource={dataSource()}
           size="small"
           tableLayout="auto"
           fixedHeader

@@ -120,6 +120,7 @@ class GraphZone extends React.Component {
       logRecords: [],
 
       selectedAlgo: null,
+      isAp: false,
     };
 
     this.layout = Defaults.layout;
@@ -697,6 +698,11 @@ class GraphZone extends React.Component {
           JSON.stringify(msg)
         );
         this.hideLoading();
+        var isAp = false;
+        if (inputDSL.startsWith("graph.compute")) {
+          isAp = true;
+        }
+        this.setState({ isAp: isAp });
         this.setState({ connected: true });
         this.setState({ rows: msg.rows });
         if (msg.graph.nodes.length > 0) {
@@ -1719,7 +1725,7 @@ class GraphZone extends React.Component {
       </div>
     );
 
-    const tableCard = <TableView rows={this.state.rows} height={mainViewHeight} />;
+    const tableCard = <TableView rows={this.state.rows} height={mainViewHeight} ap={this.state.isAp}/>;
 
     const logCard = (
       <LogView

@@ -9,7 +9,7 @@ div.table-cell {
   max-width: 100px;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
+  overflow: visible;
 }
 
 div.table-view .next-pagination {
