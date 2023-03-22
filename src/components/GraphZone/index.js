@@ -238,6 +238,33 @@ class GraphZone extends React.Component {
           ".until(or(cyclicPath(), loops().is(gte(${p.k})))).cyclicPath().path()" +
           "${p.limit === undefined ? '' : '.limit(' + p.limit + ')'}`",
       },
+      "2-1": {
+        category: "ap",
+        title: "PageRank",
+        parameters: {
+          label: {name: "边标签", optional: false},
+          iterations: {name: "迭代次数", optional: false},
+          topN: {name: "TopN", optional: false},
+        },
+        template: 
+          "`graph.compute().subgraph(g.E().hasLabel('${p.label}')).\n" +
+          "program(PageRankVp.build().iterations(${p.iterations}).create()).\n" +
+          "mapReduce(TopN.build().propertyKey('gdb.pageRank').topN(${p.topN}).create()).\n" +
+          "run().memory().get('TopN')`",
+      },
+      "2-2": {
+        category: "ap",
+        title: "标签传播",
+        parameters: {
+          label: {name: "边标签", optional: false},
+          iterations: {name: "迭代次数", optional: false},
+        },
+        template:
+          "`graph.compute().subgraph(g.E().hasLabel('${p.label}')).\n" +
+          "program(LabelPropagationVp.build().iterations(${p.iterations}).create()).\n" +
+          "mapReduce(VertexValueMapMr.build().propertyKey('gdb.lpa.label').create()).\n" +
+          "run().memory().get('gdb.VertexValueMap')`",
+      },
     };
 
     this.algorithmTree = [
@@ -272,6 +299,20 @@ class GraphZone extends React.Component {
           {
             label: "环检测",
             key: "1-5",
+          },
+        ],
+      },
+      {
+        label: "分析",
+        key: "cat-ap",
+        children: [
+          {
+            label: "PageRank",
+            key: "2-1",
+          },
+          {
+            label: "标签传播",
+            key: "2-2",
           },
         ],
       },
