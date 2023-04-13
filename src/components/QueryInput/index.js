@@ -60,10 +60,9 @@ class QueryInput extends React.Component {
     if (this.editor_ == null) {
       const editor = CodeMirror.fromTextArea(this.textAreaRef_, {
         lineNumbers: true,
-        lineWrapping: true,
+        // lineWrapping: true,
         matchBrackets: true,
         autoCloseBrackets: true,
-        // noNewlines: true,
         autoFocus: true,
         mode: "gdb",
         extraKeys: {

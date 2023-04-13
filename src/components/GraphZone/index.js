@@ -217,7 +217,7 @@ class GraphZone extends React.Component {
         },
         template:
           "`g.V('${p.id1}')" +
-          ".repeat(bothE().otherV().simplePath())" +
+          ".repeat(bothE(${p.label === undefined ? '' : \"'\" + p.label + \"'\"}).otherV().simplePath())" +
           ".times(2).hasId('${p.id2}').path()" +
           "${p.limit === undefined ? '' : '.limit(' + p.limit + ')'}`",
         preferredLayout: "dagreLR",
@@ -1115,7 +1115,9 @@ class GraphZone extends React.Component {
         // var property = isVertex ? dataParser.parseNodeProperty(msg) :
         //   dataParser.parseEdgeProperty(msg.result);
         let property = msg.rows[0];
-        property["~id"] = this.state.selectedId;
+        console.log("property:", property);
+        const id = this.state.selectedId;
+        // property["~id"] = this.state.selectedId;
         Message.success({
           title: "修改成功",
           closeable: true,
@@ -1124,7 +1126,7 @@ class GraphZone extends React.Component {
         // newProperties.push({ key: '~id', value: this.state.selectedId });
         // this.setState({ propertys: newProperties });
         this.hidePropertyEditDialog();
-        this.updatePropertysState(this.state.selectedType, property);
+        this.updatePropertysState(this.state.selectedType, id, null, property);
       },
       (error) => {
         this.hideLoading();
