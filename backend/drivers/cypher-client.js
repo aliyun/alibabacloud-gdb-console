@@ -34,6 +34,13 @@ class Observer {
     this.error = null;
   }
 
+  convertInteger = (e) => {
+    if (neo4j.types.Integer.inSafeRange(e)) {
+      return e.toNumber();
+    }
+    return e.toString();
+  };
+
   onNext = (record) => {
     var row = {};
     record.keys.forEach((key) => {
@@ -46,6 +53,8 @@ class Observer {
         row[key] = this.parsePath(element);
       } else if (Array.isArray(element)) {
         row[key] = this.parseArray(element);
+      } else if (element instanceof neo4j.types.Integer) {
+        row[key] = this.convertInteger(element);
       } else {
         row[key] = element;
       }
@@ -150,6 +159,10 @@ class Observer {
         result.push(this.parseRelationship(e));
       } else if (neo4j_types.isPath(e)) {
         result.push(this.parsePath(e));
+      } else if (e instanceof neo4j.types.Integer) {
+        result.push(this.convertInteger(e));
+      } else {
+        result.push(e);
       }
     });
     return result;
